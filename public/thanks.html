@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You | PartSeekr</title>
+  <meta name="description" content="Thank you for your order on PartSeekr.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">PartSeekr</a>
+    <nav>
+      <a href="/">Parts</a>
+      <a href="/demand.html">Demand Board</a>
+      <a href="/sell.html">Sell a Part</a>
+    </nav>
+  </header>
+
+  <main class="container" style="text-align:center; padding-top: 60px;">
+    <h1>Thank You!</h1>
+    <p>Your order has been placed. We will contact you shortly with pickup or shipping details.</p>
+    <p>Order ID: <strong id="orderId">loading...</strong></p>
+    <a href="/" class="btn btn-primary">Continue Shopping</a>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> PartSeekr. Local auto parts, found fast.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById('orderId').textContent = params.get('order_id') || 'N/A';
+  </script>
+</body>
+</html>

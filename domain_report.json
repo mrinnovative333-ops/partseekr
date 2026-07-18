@@ -1,0 +1,642 @@
+[
+  {
+    "domain": "partseekr.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "partseekr.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "partseekr.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "partseekr.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "partseekr.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "partseekr.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partseekr.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partseekr.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "seekparts.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "seekparts.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "seekparts.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "seekparts.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "seekparts.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "seekparts.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "seekparts.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "seekparts.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "partfindr.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "partfindr.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "partfindr.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "partfindr.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "partfindr.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "partfindr.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partfindr.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partfindr.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "localparts.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "localparts.net",
+    "available": false,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "localparts.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "localparts.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "localparts.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "localparts.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "localparts.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "localparts.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "okparts.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "okparts.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "okparts.org",
+    "available": false,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "okparts.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "okparts.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "okparts.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "okparts.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "okparts.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "cheapautoparts.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "cheapautoparts.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "cheapautoparts.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "cheapautoparts.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "cheapautoparts.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "cheapautoparts.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "cheapautoparts.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "cheapautoparts.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "autopartlocal.com",
+    "available": true,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "autopartlocal.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "autopartlocal.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "autopartlocal.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "autopartlocal.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "autopartlocal.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "autopartlocal.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "autopartlocal.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  },
+  {
+    "domain": "partnearme.com",
+    "available": false,
+    "pricing": {
+      "namecheap": 10.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.15
+    },
+    "cheapest": 9.15
+  },
+  {
+    "domain": "partnearme.net",
+    "available": true,
+    "pricing": {
+      "namecheap": 12.98,
+      "porkbun": 11.48,
+      "cloudflare": 11.06
+    },
+    "cheapest": 11.06
+  },
+  {
+    "domain": "partnearme.org",
+    "available": true,
+    "pricing": {
+      "namecheap": 8.98,
+      "porkbun": 9.73,
+      "cloudflare": 9.93
+    },
+    "cheapest": 8.98
+  },
+  {
+    "domain": "partnearme.co",
+    "available": true,
+    "pricing": {
+      "namecheap": 9.48,
+      "porkbun": 8.55,
+      "cloudflare": null
+    },
+    "cheapest": 8.55
+  },
+  {
+    "domain": "partnearme.io",
+    "available": true,
+    "pricing": {
+      "namecheap": 34.98,
+      "porkbun": 34.15,
+      "cloudflare": 34.15
+    },
+    "cheapest": 34.15
+  },
+  {
+    "domain": "partnearme.shop",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partnearme.store",
+    "available": true,
+    "pricing": {
+      "namecheap": 2.98,
+      "porkbun": 3.04,
+      "cloudflare": null
+    },
+    "cheapest": 2.98
+  },
+  {
+    "domain": "partnearme.online",
+    "available": true,
+    "pricing": {
+      "namecheap": 1.98,
+      "porkbun": 4.04,
+      "cloudflare": null
+    },
+    "cheapest": 1.98
+  }
+]

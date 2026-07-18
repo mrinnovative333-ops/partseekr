@@ -47,13 +47,14 @@ function stripeRequest({ method, path, body }) {
 }
 
 function createPaymentLink({ title, amountCents, quantity = 1, metadata = {} }) {
+  const baseReturn = (process.env.SITE_URL || 'http://localhost:3000').replace(/\/$/, '');
   const body = {
     'line_items[0][price_data][currency]': 'usd',
     'line_items[0][price_data][unit_amount]': amountCents,
     'line_items[0][price_data][product_data][name]': title,
     'line_items[0][quantity]': quantity,
     'after_completion[type]': 'redirect',
-    'after_completion[redirect][url]': process.env.SITE_URL || 'http://localhost:3000/thanks',
+    'after_completion[redirect][url]': `${baseReturn}/thanks.html?order_id=${metadata.order_id || ''}`,
   };
 
   Object.keys(metadata).forEach((key, idx) => {
