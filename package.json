@@ -1,0 +1,15 @@
+{
+  "name": "partseekr",
+  "version": "1.0.0",
+  "description": "Local auto parts marketplace with zero dependencies",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["auto-parts", "marketplace", "arbitrage"],
+  "license": "MIT"
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PartSeekr — Find Auto Parts Locally</title>
+  <meta name="description" content="PartSeekr connects buyers and sellers of auto parts. Browse listings or post what you need on the demand board.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">PartSeekr</a>
+    <nav>
+      <a href="/">Parts</a>
+      <a href="/demand.html">Demand Board</a>
+      <a href="/sell.html">Sell a Part</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Find the part. Close the deal.</h1>
+      <p>Local auto parts marketplace. Browse inventory or post what you need.</p>
+      <div class="search-row">
+        <input type="text" id="searchInput" placeholder="Search part number, brand, or car...">
+        <button id="searchBtn" class="btn btn-primary">Search</button>
+      </div>
+    </section>
+
+    <section id="listings" class="grid">
+      <p class="loading">Loading parts...</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> PartSeekr. Local auto parts, found fast.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function loadListings(query = '') {
+      const res = await fetch('/api/listings');
+      const listings = await res.json();
+      const container = document.getElementById('listings');
+      container.innerHTML = '';
+
+      const filtered = listings.filter(l => {
+        const text = `${l.title} ${l.partNumber} ${l.brand} ${l.fits} ${l.tags.join(' ')}`.toLowerCase();
+        return text.includes(query.toLowerCase());
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="empty">No parts found. Try the demand board.</p>';
+        return;
+      }
+
+      filtered.forEach(l => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${l.image}" alt="${l.title}">
+          <div class="card-body">
+            <h3><a href="/part/${l.id}">${l.title}</a></h3>
+            <p class="part-number">Part # ${l.partNumber}</p>
+            <p class="fits">Fits: ${l.fits}</p>
+            <p class="price">$${l.price.toFixed(2)}</p>
+            <a href="/part/${l.id}" class="btn">View Part</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      loadListings(document.getElementById('searchInput').value);
+    });
+    document.getElementById('searchInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') loadListings(e.target.value);
+    });
+
+    loadListings();
+  </script>
+</body>
+</html>

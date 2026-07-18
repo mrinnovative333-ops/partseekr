@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sell a Part | PartSeekr</title>
+  <meta name="description" content="List your auto part on PartSeekr and reach local buyers.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">PartSeekr</a>
+    <nav>
+      <a href="/">Parts</a>
+      <a href="/demand.html">Demand Board</a>
+      <a href="/sell.html">Sell a Part</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Sell a Part</h1>
+      <p>Add your part to the public listings. Buyers can check out instantly.</p>
+    </section>
+
+    <section class="form-section">
+      <form id="sellForm">
+        <input type="text" id="sTitle" placeholder="Part title" required>
+        <input type="text" id="sPartNumber" placeholder="Part number" required>
+        <input type="text" id="sBrand" placeholder="Brand" required>
+        <input type="text" id="sCategory" placeholder="Category e.g. Brakes" required>
+        <input type="text" id="sCondition" placeholder="Condition: New, Used, Reman" required>
+        <input type="number" id="sPrice" placeholder="Price ($)" min="0" step="0.01" required>
+        <input type="number" id="sInventory" placeholder="Quantity in stock" min="0" value="1" required>
+        <input type="text" id="sFits" placeholder="Fits: year/make/model" required>
+        <textarea id="sDescription" placeholder="Description" required></textarea>
+        <input type="text" id="sImage" placeholder="Image URL (or leave default)" value="https://placehold.co/400x300/e2e8f0/1e293b?text=PART">
+        <input type="text" id="sTags" placeholder="Tags separated by commas" required>
+        <button type="submit" class="btn btn-primary">List Part</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> PartSeekr. Local auto parts, found fast.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.getElementById('sellForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const payload = {
+        title: document.getElementById('sTitle').value,
+        partNumber: document.getElementById('sPartNumber').value,
+        brand: document.getElementById('sBrand').value,
+        category: document.getElementById('sCategory').value,
+        condition: document.getElementById('sCondition').value,
+        price: parseFloat(document.getElementById('sPrice').value),
+        inventory: parseInt(document.getElementById('sInventory').value, 10),
+        fits: document.getElementById('sFits').value,
+        description: document.getElementById('sDescription').value,
+        image: document.getElementById('sImage').value,
+        tags: document.getElementById('sTags').value.split(',').map(t => t.trim()).filter(Boolean),
+      };
+
+      const res = await fetch('/api/listings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        alert('Listed! View it at /part/' + data.id);
+        window.location.href = '/part/' + data.id;
+      } else {
+        alert('Failed to list part. Try again.');
+      }
+    });
+  </script>
+</body>
+</html>

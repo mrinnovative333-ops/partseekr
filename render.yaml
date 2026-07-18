@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: partseekr
+    env: node
+    plan: free
+    buildCommand: ""
+    startCommand: node server.js
+    envVars:
+      - key: STRIPE_RESTRICTED_KEY
+        sync: false
+      - key: SITE_URL
+        value: https://partseekr.onrender.com

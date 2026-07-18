@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demand Board | PartSeekr</title>
+  <meta name="description" content="Post what auto part you need. Sellers can respond to your demand on PartSeekr.">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">PartSeekr</a>
+    <nav>
+      <a href="/">Parts</a>
+      <a href="/demand.html">Demand Board</a>
+      <a href="/sell.html">Sell a Part</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Demand Board</h1>
+      <p>See what buyers need right now. Post your own request at the bottom.</p>
+    </section>
+
+    <section id="demandBoard" class="tag-board">
+      <p class="loading">Loading demand...</p>
+    </section>
+
+    <section class="form-section">
+      <h2>Post What You Need</h2>
+      <form id="demandForm">
+        <input type="text" id="dTitle" placeholder="e.g. Need Denso Oxygen Sensor" required>
+        <input type="text" id="dPartNumber" placeholder="Part number (optional)">
+        <input type="text" id="dCategory" placeholder="Category e.g. Exhaust" required>
+        <input type="number" id="dBudget" placeholder="Your budget per unit ($)" min="0" step="0.01" required>
+        <input type="number" id="dQuantity" placeholder="Quantity needed" min="1" value="1" required>
+        <input type="text" id="dLocation" placeholder="Your city/state" required>
+        <input type="email" id="dContact" placeholder="Email or phone" required>
+        <textarea id="dNotes" placeholder="Notes: year/make/model, condition, etc."></textarea>
+        <input type="text" id="dTags" placeholder="Tags separated by commas">
+        <button type="submit" class="btn btn-primary">Post Request</button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> PartSeekr. Local auto parts, found fast.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function loadDemand() {
+      const res = await fetch('/api/demand');
+      const items = await res.json();
+      const board = document.getElementById('demandBoard');
+      board.innerHTML = '';
+
+      if (items.length === 0) {
+        board.innerHTML = '<p class="empty">No demand posts yet. Be the first.</p>';
+        return;
+      }
+
+      items.slice().reverse().forEach(d => {
+        const el = document.createElement('div');
+        el.className = 'demand-tag';
+        el.innerHTML = `
+          <div class="tag-header">
+            <strong>${d.title}</strong>
+            <span class="tag-budget">$${d.budget.toFixed(2)} × ${d.quantity}</span>
+          </div>
+          <p>${d.notes || ''}</p>
+          <p class="tag-meta">${d.location} &bull; ${new Date(d.createdAt).toLocaleDateString()} &bull; ${d.contact}</p>
+          <div class="tag-tags">${(d.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ')}</div>
+        `;
+        board.appendChild(el);
+      });
+    }
+
+    document.getElementById('demandForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const payload = {
+        title: document.getElementById('dTitle').value,
+        partNumber: document.getElementById('dPartNumber').value,
+        category: document.getElementById('dCategory').value,
+        budget: parseFloat(document.getElementById('dBudget').value),
+        quantity: parseInt(document.getElementById('dQuantity').value, 10),
+        location: document.getElementById('dLocation').value,
+        contact: document.getElementById('dContact').value,
+        notes: document.getElementById('dNotes').value,
+        tags: document.getElementById('dTags').value.split(',').map(t => t.trim()).filter(Boolean),
+      };
+
+      const res = await fetch('/api/demand', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        e.target.reset();
+        loadDemand();
+        alert('Posted! Sellers can now see your request.');
+      } else {
+        alert('Failed to post. Try again.');
+      }
+    });
+
+    loadDemand();
+  </script>
+</body>
+</html>
