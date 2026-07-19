@@ -4,7 +4,7 @@ const querystring = require('querystring');
 const STRIPE_API_HOST = 'api.stripe.com';
 
 function stripeRequest({ method, path, body }) {
-  const apiKey = process.env.STRIPE_RESTRICTED_KEY || process.env.STRIPE_SECRET_KEY;
+  const apiKey = (process.env.STRIPE_RESTRICTED_KEY || process.env.STRIPE_SECRET_KEY || '').toString().trim();
   if (!apiKey) {
     return Promise.reject(new Error('No Stripe API key set'));
   }
