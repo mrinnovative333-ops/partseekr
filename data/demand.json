@@ -1,0 +1,51 @@
+[
+  {
+    "id": "dem_001",
+    "partNumber": "DENSO-234-4622",
+    "title": "Need Denso 234-4622 Oxygen Sensor",
+    "category": "Exhaust",
+    "budget": 65,
+    "quantity": 2,
+    "location": "Tulsa, OK",
+    "notes": "Looking for upstream sensor for 2010 Toyota Camry.",
+    "contact": "buyer@example.com",
+    "createdAt": "2026-07-18T20:47:43.141Z",
+    "tags": [
+      "oxygen sensor",
+      "toyota",
+      "camry",
+      "exhaust"
+    ]
+  },
+  {
+    "id": "dem_002",
+    "partNumber": "ACD-41-1033",
+    "title": "Wanted: ACDelco 41-1033 Ignition Coil",
+    "category": "Ignition",
+    "budget": 22,
+    "quantity": 6,
+    "location": "Oklahoma City, OK",
+    "notes": "Need six coils for 2007 Chevy Silverado 5.3L.",
+    "contact": "mechanic@example.com",
+    "createdAt": "2026-07-18T20:47:43.145Z",
+    "tags": [
+      "ignition coil",
+      "chevy",
+      "silverado"
+    ]
+  },
+  {
+    "id": "dem_1784407675374",
+    "title": "Test demand",
+    "category": "Test",
+    "budget": 50,
+    "quantity": 1,
+    "location": "Tulsa",
+    "contact": "x@x.com",
+    "notes": "test",
+    "tags": [
+      "test"
+    ],
+    "createdAt": "2026-07-18T20:47:55.374Z"
+  }
+]
