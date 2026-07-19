@@ -179,6 +179,12 @@ const server = http.createServer((req, res) => {
   if (pathname === '/api/listings' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(LISTINGS_FILE))); return; }
   if (pathname === '/api/orders' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(ORDERS_FILE))); return; }
   if (pathname === '/api/demand' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(DEMAND_FILE))); return; }
+  if (pathname === '/api/demand' && req.method === 'POST') {
+    let body = ''; req.on('data', chunk => body += chunk); req.on('end', () => {
+      try { const data = JSON.parse(body); const demand = readJson(DEMAND_FILE); const entry = { id: 'dem_' + Date.now(), ...data, createdAt: new Date().toISOString() }; demand.push(entry); writeJson(DEMAND_FILE, demand); res.writeHead(201, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(entry)); }
+      catch (e) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Invalid JSON' })); }
+    }); return;
+  }
   if (pathname === '/api/demand/upload' && req.method === 'POST') {
     parseMultipart(req, UPLOAD_DIR).then(({ fields, files }) => {
       const photoUrls = [];
@@ -205,11 +211,23 @@ const server = http.createServer((req, res) => {
     }).catch(err => { res.writeHead(400, { 'Content-Type': 'text/plain' }); res.end(err.message); });
     return;
   }
-  if (pathname === '/api/demand' && req.method === 'POST') {
-    let body = ''; req.on('data', chunk => body += chunk); req.on('end', () => {
-      try { const data = JSON.parse(body); const demand = readJson(DEMAND_FILE); const entry = { id: 'dem_' + Date.now(), ...data, createdAt: new Date().toISOString() }; demand.push(entry); writeJson(DEMAND_FILE, demand); res.writeHead(201, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(entry)); }
-      catch (e) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Invalid JSON' })); }
-    }); return;
+  if (pathname === '/api/admin/apply-photo' && req.method === 'POST') {
+    parseMultipart(req, UPLOAD_DIR).then(({ fields, files }) => {
+      const partNumber = (fields.partNumber || '').toUpperCase();
+      const f = files.photo;
+      if (!partNumber || !f) { res.writeHead(400); res.end('Missing partNumber or photo'); return; }
+      const listings = readJson(LISTINGS_FILE);
+      const idx = listings.findIndex(l => l.partNumber.toUpperCase() === partNumber);
+      if (idx === -1) { res.writeHead(404); res.end('Listing not found'); return; }
+      const photoUrl = `${SITE_URL}/uploads/${f.savedName}`;
+      if (!listings[idx].photos) listings[idx].photos = [];
+      listings[idx].photos.push(photoUrl);
+      listings[idx].photos = listings[idx].photos.slice(-8);
+      listings[idx].image = listings[idx].photos[0];
+      writeJson(LISTINGS_FILE, listings);
+      res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ ok: true, partNumber, photoUrl }));
+    }).catch(err => { res.writeHead(400); res.end(err.message); });
+    return;
   }
   if (pathname.startsWith('/uploads/')) {
     const file = pathname.replace('/uploads/', '').replace(/[^a-zA-Z0-9._-]/g, '');
@@ -224,7 +242,7 @@ const server = http.createServer((req, res) => {
   }
   if (pathname === '/robots.txt') { res.writeHead(200, { 'Content-Type': 'text/plain' }); res.end(`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`); return; }
   if (pathname === '/sitemap.xml') {
-    const listings = readJson(LISTINGS_FILE); let xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
+    const listings = readJson(LISTINGS_FILE); let xml = '<?xml version="1.0" encoding="UTF-8"?\u003e\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
     xml += `  <url><loc>${SITE_URL}/</loc><priority>1.0</priority></url>\n`; xml += `  <url><loc>${SITE_URL}/demand.html</loc><priority>0.8</priority></url>\n`; xml += `  <url><loc>${SITE_URL}/sell.html</loc><priority>0.7</priority></url>\n`;
     listings.forEach(l => { xml += `  <url><loc>${SITE_URL}/part/${l.id}</loc><priority>0.9</priority></url>\n`; });
     xml += '</urlset>'; res.writeHead(200, { 'Content-Type': 'application/xml' }); res.end(xml); return;

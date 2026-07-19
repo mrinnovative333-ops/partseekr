@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Photo Uploader | PartSeekr</title>
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    .dropzone { border: 2px dashed var(--primary); border-radius: var(--radius); padding: 2rem; text-align: center; cursor: pointer; margin-bottom: 1.5rem; }
+    .dropzone.dragover { background: rgba(56, 189, 248, 0.1); }
+    .mapping-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+    .mapping-card { background: var(--card); border: 1px solid #334155; border-radius: var(--radius); padding: 1rem; }
+    .mapping-card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.75rem; }
+    .mapping-card input { width: 100%; font-size: 0.9rem; }
+    .mapping-card .filename { font-size: 0.75rem; color: var(--muted); word-break: break-all; margin-bottom: 0.5rem; }
+    .actions { display: flex; gap: 1rem; justify-content: center; margin-top: 1rem; }
+    .status { margin-top: 1rem; padding: 1rem; border-radius: var(--radius); }
+    .status.success { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .status.error { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo">PartSeekr</a>
+    <nav><a href="/">Parts</a><a href="/admin-photos.html">Bulk Photos</a></nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Bulk Photo Uploader</h1>
+      <p>Drop or select photos. The uploader reads part numbers from filenames or lets you type them. Submit to apply all photos to the matching listings.</p>
+    </section>
+
+    <div id="dropzone" class="dropzone">
+      <p>Drop images here or click to choose files</p>
+      <input type="file" id="fileInput" accept="image/*" multiple hidden>
+    </div>
+
+    <div id="mappingArea"></div>
+
+    <div class="actions" id="actions" style="display:none">
+      <button id="autoMatchBtn" class="btn">Auto-Match Part Numbers</button>
+      <button id="submitBtn" class="btn btn-primary">Apply Photos to Listings</button>
+    </div>
+
+    <div id="status"></div>
+  </main>
+
+  <script>
+    const dropzone = document.getElementById('dropzone');
+    const fileInput = document.getElementById('fileInput');
+    const mappingArea = document.getElementById('mappingArea');
+    const actions = document.getElementById('actions');
+    const status = document.getElementById('status');
+
+    let files = [];
+    let listings = [];
+
+    dropzone.addEventListener('click', () => fileInput.click());
+    dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+    dropzone.addEventListener('drop', e => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      handleFiles(e.dataTransfer.files);
+    });
+    fileInput.addEventListener('change', () => handleFiles(fileInput.files));
+
+    async function loadListings() {
+      const res = await fetch('/api/listings');
+      listings = await res.json();
+    }
+
+    function extractPartNumber(filename) {
+      const base = filename.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+      // Look for common patterns: brand-partnumber, partnumber, or full title
+      const patterns = [
+        /\b(BOS|NGK|ACD|MOO|DENSO|MOTORCRAFT)-[A-Z0-9-]+\b/i,
+        /\b(BOSCH|NGK|ACDELCO|MOOG|DENSO|MOTORCRAFT)\s*[\s_-]?([A-Z0-9-]{3,})\b/i,
+        /\b([A-Z0-9]{3,}-[A-Z0-9-]+)\b/i,
+      ];
+      for (const p of patterns) {
+        const m = base.match(p);
+        if (m) return m[0].toUpperCase().replace(/\s/g, '-');
+      }
+      return '';
+    }
+
+    function handleFiles(fileList) {
+      files = Array.from(fileList);
+      renderMapping();
+      actions.style.display = files.length ? 'flex' : 'none';
+    }
+
+    function renderMapping() {
+      mappingArea.innerHTML = '';
+      const grid = document.createElement('div');
+      grid.className = 'mapping-grid';
+      files.forEach((file, idx) => {
+        const card = document.createElement('div');
+        card.className = 'mapping-card';
+        card.innerHTML = `
+          <img src="${URL.createObjectURL(file)}" alt="${file.name}">
+          <div class="filename">${file.name}</div>
+          <input type="text" id="pn-${idx}" placeholder="Part Number" value="${extractPartNumber(file.name)}">
+        `;
+        grid.appendChild(card);
+      });
+      mappingArea.appendChild(grid);
+    }
+
+    document.getElementById('autoMatchBtn').addEventListener('click', () => {
+      let matched = 0;
+      files.forEach((file, idx) => {
+        const input = document.getElementById(`pn-${idx}`);
+        if (!input.value) {
+          const pn = extractPartNumber(file.name);
+          input.value = pn;
+        }
+        if (input.value) {
+          const hit = listings.find(l => l.partNumber.toUpperCase() === input.value.toUpperCase());
+          if (hit) {
+            input.style.borderColor = '#22c55e';
+            matched++;
+          } else {
+            input.style.borderColor = '#ef4444';
+          }
+        }
+      });
+      status.className = 'status ' + (matched ? 'success' : 'error');
+      status.textContent = matched ? `Matched ${matched} of ${files.length} photos to listings.` : 'No matches found. Check part numbers or rename files.';
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', async () => {
+      status.className = 'status';
+      status.textContent = 'Uploading...';
+
+      const payload = [];
+      for (let idx = 0; idx < files.length; idx++) {
+        const pn = document.getElementById(`pn-${idx}`).value.trim().toUpperCase();
+        if (!pn) continue;
+        const listing = listings.find(l => l.partNumber.toUpperCase() === pn);
+        if (!listing) continue;
+
+        const form = new FormData();
+        form.append('photo', files[idx]);
+        form.append('partNumber', pn);
+
+        const res = await fetch('/api/admin/apply-photo', {
+          method: 'POST',
+          body: form,
+        });
+        if (!res.ok) {
+          status.className = 'status error';
+          status.textContent = `Failed on ${pn}: ${await res.text()}`;
+          return;
+        }
+        payload.push(pn);
+      }
+
+      status.className = 'status success';
+      status.textContent = `Applied photos to ${payload.length} listing(s): ${payload.join(', ')}`;
+      setTimeout(() => location.reload(), 2000);
+    });
+
+    loadListings();
+  </script>
+</body>
+</html>
