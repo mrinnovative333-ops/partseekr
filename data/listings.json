@@ -1,61 +1,5 @@
 [
   {
-    "id": "lst_001",
-    "partNumber": "BOS-04495",
-    "title": "Bosch 04495 Brake Pad Set - Front",
-    "brand": "Bosch",
-    "category": "Brakes",
-    "condition": "New",
-    "price": 47.99,
-    "inventory": 4,
-    "fits": "2015-2020 Ford F-150",
-    "description": "Ceramic brake pad set, direct OEM replacement. Low dust, quiet operation.",
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=BOS-04495",
-    "tags": [
-      "brake pads",
-      "ford",
-      "f150",
-      "front"
-    ]
-  },
-  {
-    "id": "lst_002",
-    "partNumber": "NGK-6994",
-    "title": "NGK 6994 Spark Plug - Iridium IX",
-    "brand": "NGK",
-    "category": "Ignition",
-    "condition": "New",
-    "price": 8.49,
-    "inventory": 24,
-    "fits": "Universal 14mm thread",
-    "description": "Iridium IX spark plug. Pre-gapped, ready to install.",
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=NGK-6994",
-    "tags": [
-      "spark plug",
-      "ignition",
-      "iridium"
-    ]
-  },
-  {
-    "id": "lst_003",
-    "partNumber": "MOO-RK620497",
-    "title": "Moog RK620497 Control Arm and Ball Joint",
-    "brand": "Moog",
-    "category": "Suspension",
-    "condition": "New",
-    "price": 89,
-    "inventory": 2,
-    "fits": "2008-2012 Honda Accord",
-    "description": "R-Series control arm with pressed-in ball joint. Powdered metal gusher bearing.",
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=MOO-RK620497",
-    "tags": [
-      "control arm",
-      "suspension",
-      "honda",
-      "accord"
-    ]
-  },
-  {
     "id": "lst_1784408648350",
     "partNumber": "BOS-04495",
     "title": "Bosch BOS-04495 Brake Pad Set for 2015-2020 Ford F-150",
@@ -75,12 +19,15 @@
     ],
     "costPrice": 32.5,
     "inventory": 4,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=BOS-04495",
+    "image": "https://images.unsplash.com/photo-1489824904134-891ab64532f0?w=600&q=80",
     "price": 42.25,
     "competitorPrice": 52,
     "profitGross": 9.75,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-18T21:04:08.350Z"
+    "createdAt": "2026-07-18T21:04:08.350Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1489824904134-891ab64532f0?w=600&q=80"
+    ]
   },
   {
     "id": "lst_1784408780023",
@@ -102,39 +49,15 @@
     ],
     "costPrice": 5.5,
     "inventory": 12,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=NGK-6994",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 7.15,
     "competitorPrice": 11.99,
     "profitGross": 1.6500000000000004,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-18T21:06:20.023Z"
-  },
-  {
-    "id": "lst_1784408780094",
-    "partNumber": "DENSO-234-4622",
-    "title": "Denso DENSO-234-4622 Oxygen Sensor for 2010 Toyota Camry 2.5L",
-    "brand": "Denso",
-    "category": "Ignition",
-    "condition": "New",
-    "fits": "2010 Toyota Camry 2.5L",
-    "description": "Genuine Denso DENSO-234-4622 Oxygen Sensor. Fits 2010 Toyota Camry 2.5L. New replacement part with fast local availability.",
-    "tags": [
-      "denso",
-      "denso-234-4622",
-      "oxygen-sensor",
-      "ignition",
-      "toyota",
-      "camry",
-      "2.5l"
-    ],
-    "costPrice": 42,
-    "inventory": 6,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=DENSO-234-4622",
-    "price": 54.6,
-    "competitorPrice": 74.99,
-    "profitGross": 12.600000000000001,
-    "profitMargin": 23.08,
-    "createdAt": "2026-07-18T21:06:20.094Z"
+    "createdAt": "2026-07-18T21:06:20.023Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
     "id": "lst_1784408780163",
@@ -157,39 +80,15 @@
     ],
     "costPrice": 14.75,
     "inventory": 8,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=ACD-41-1033",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 19.18,
     "competitorPrice": 26.99,
     "profitGross": 4.43,
     "profitMargin": 23.1,
-    "createdAt": "2026-07-18T21:06:20.163Z"
-  },
-  {
-    "id": "lst_1784408780269",
-    "partNumber": "MOO-RK620497",
-    "title": "Moog MOO-RK620497 Control Arm for 2008-2012 Honda Accord",
-    "brand": "Moog",
-    "category": "Suspension",
-    "condition": "New",
-    "fits": "2008-2012 Honda Accord",
-    "description": "Genuine Moog MOO-RK620497 Control Arm. Fits 2008-2012 Honda Accord. New replacement part with fast local availability.",
-    "tags": [
-      "moog",
-      "moo-rk620497",
-      "control-arm",
-      "suspension",
-      "honda",
-      "accord",
-      "2008-2012"
-    ],
-    "costPrice": 58,
-    "inventory": 3,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=MOO-RK620497",
-    "price": 75.4,
-    "competitorPrice": 105,
-    "profitGross": 17.400000000000006,
-    "profitMargin": 23.08,
-    "createdAt": "2026-07-18T21:06:20.269Z"
+    "createdAt": "2026-07-18T21:06:20.163Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
     "id": "lst_1784408780474",
@@ -211,15 +110,18 @@
     ],
     "costPrice": 6.25,
     "inventory": 10,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=MOTORCRAFT-FL500S",
+    "image": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80",
     "price": 8.13,
     "competitorPrice": 12.99,
     "profitGross": 1.8800000000000008,
     "profitMargin": 23.12,
-    "createdAt": "2026-07-18T21:06:20.474Z"
+    "createdAt": "2026-07-18T21:06:20.474Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609820",
+    "id": "lst_1784445517427",
     "partNumber": "DENSO-234-4622",
     "title": "Denso DENSO-234-4622 Oxygen Sensor for 2010 Toyota Camry 2.5L",
     "brand": "Denso",
@@ -238,7 +140,7 @@
     ],
     "costPrice": 42,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=DENSO-234-4622",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 66.76,
     "shippingCost": 5.99,
     "taxRate": 0.08,
@@ -250,10 +152,13 @@
     "competitorPrice": 74.99,
     "profitGross": 15.410000000000004,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-19T06:30:09.821Z"
+    "createdAt": "2026-07-19T07:18:37.427Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609839",
+    "id": "lst_1784445517431",
     "partNumber": "DENSO-234-9052",
     "title": "Denso DENSO-234-9052 Oxygen Sensor for various compatible models",
     "brand": "Denso",
@@ -272,7 +177,7 @@
     ],
     "costPrice": 52,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=DENSO-234-9052",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 80.8,
     "shippingCost": 5.99,
     "taxRate": 0.08,
@@ -284,10 +189,13 @@
     "competitorPrice": 89.99,
     "profitGross": 18.64999999999999,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-19T06:30:09.839Z"
+    "createdAt": "2026-07-19T07:18:37.431Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609841",
+    "id": "lst_1784445517433",
     "partNumber": "MOO-RK620497",
     "title": "Moog MOO-RK620497 Control Arm for 2008-2012 Honda Accord",
     "brand": "Moog",
@@ -306,7 +214,7 @@
     ],
     "costPrice": 58,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=MOO-RK620497",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
     "price": 93.12,
     "shippingCost": 8.99,
     "taxRate": 0.08,
@@ -318,10 +226,13 @@
     "competitorPrice": 105,
     "profitGross": 21.49000000000001,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-19T06:30:09.841Z"
+    "createdAt": "2026-07-19T07:18:37.433Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609843",
+    "id": "lst_1784445517434",
     "partNumber": "ACD-12611420",
     "title": "ACDelco ACD-12611420 Ignition Coil for various compatible models",
     "brand": "ACDelco",
@@ -340,7 +251,7 @@
     ],
     "costPrice": 38,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=ACD-12611420",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 61.14,
     "shippingCost": 5.99,
     "taxRate": 0.08,
@@ -352,10 +263,13 @@
     "competitorPrice": 67.99,
     "profitGross": 14.11,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-19T06:30:09.843Z"
+    "createdAt": "2026-07-19T07:18:37.434Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609844",
+    "id": "lst_1784445517435",
     "partNumber": "MOO-RK620568",
     "title": "Moog MOO-RK620568 Control Arm for various compatible models",
     "brand": "Moog",
@@ -374,7 +288,7 @@
     ],
     "costPrice": 54,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=MOO-RK620568",
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
     "price": 87.5,
     "shippingCost": 8.99,
     "taxRate": 0.08,
@@ -386,10 +300,124 @@
     "competitorPrice": 98,
     "profitGross": 20.189999999999998,
     "profitMargin": 23.07,
-    "createdAt": "2026-07-19T06:30:09.844Z"
+    "createdAt": "2026-07-19T07:18:37.435Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609845",
+    "id": "lst_1784445517436",
+    "partNumber": "MOO-RK620553",
+    "title": "Moog MOO-RK620553 Control Arm for various compatible models",
+    "brand": "Moog",
+    "category": "Suspension",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Moog MOO-RK620553 Control Arm. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "moog",
+      "moo-rk620553",
+      "control-arm",
+      "suspension",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 50,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
+    "price": 81.89,
+    "shippingCost": 8.99,
+    "taxRate": 0.08,
+    "tax": 4,
+    "landedCost": 62.99,
+    "shippingDays": 4,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=MOO-RK620553",
+    "competitorPrice": 91,
+    "profitGross": 18.9,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.436Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517437",
+    "partNumber": "MOO-RK620460",
+    "title": "Moog MOO-RK620460 Control Arm for various compatible models",
+    "brand": "Moog",
+    "category": "Suspension",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Moog MOO-RK620460 Control Arm. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "moog",
+      "moo-rk620460",
+      "control-arm",
+      "suspension",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 51,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
+    "price": 83.29,
+    "shippingCost": 8.99,
+    "taxRate": 0.08,
+    "tax": 4.08,
+    "landedCost": 64.07000000000001,
+    "shippingDays": 4,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=MOO-RK620460",
+    "competitorPrice": 92,
+    "profitGross": 19.22,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.437Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517438",
+    "partNumber": "DENSO-234-9066",
+    "title": "Denso DENSO-234-9066 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-9066 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-9066",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 39,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 62.54,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 3.12,
+    "landedCost": 48.11,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-9066",
+    "competitorPrice": 69.99,
+    "profitGross": 14.43,
+    "profitMargin": 23.07,
+    "createdAt": "2026-07-19T07:18:37.438Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517439",
     "partNumber": "DENSO-950-0107",
     "title": "Denso DENSO-950-0107 Oxygen Sensor for various compatible models",
     "brand": "Denso",
@@ -408,7 +436,7 @@
     ],
     "costPrice": 72,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=DENSO-950-0107",
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
     "price": 112.78,
     "shippingCost": 8.99,
     "taxRate": 0.08,
@@ -420,10 +448,346 @@
     "competitorPrice": 119.99,
     "profitGross": 26.03,
     "profitMargin": 23.08,
-    "createdAt": "2026-07-19T06:30:09.845Z"
+    "createdAt": "2026-07-19T07:18:37.439Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
   },
   {
-    "id": "lst_1784442609846",
+    "id": "lst_1784445517440",
+    "partNumber": "MOO-RK620485",
+    "title": "Moog MOO-RK620485 Control Arm for various compatible models",
+    "brand": "Moog",
+    "category": "Suspension",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Moog MOO-RK620485 Control Arm. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "moog",
+      "moo-rk620485",
+      "control-arm",
+      "suspension",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 53,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
+    "price": 86.1,
+    "shippingCost": 8.99,
+    "taxRate": 0.08,
+    "tax": 4.24,
+    "landedCost": 66.23,
+    "shippingDays": 4,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=MOO-RK620485",
+    "competitorPrice": 95,
+    "profitGross": 19.86999999999999,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.440Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517442",
+    "partNumber": "DENSO-234-4368",
+    "title": "Denso DENSO-234-4368 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-4368 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-4368",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 37,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 59.74,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.96,
+    "landedCost": 45.95,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-4368",
+    "competitorPrice": 66.99,
+    "profitGross": 13.79,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.442Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517443",
+    "partNumber": "MOO-RK640365",
+    "title": "Moog MOO-RK640365 Control Arm for various compatible models",
+    "brand": "Moog",
+    "category": "Suspension",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Moog MOO-RK640365 Control Arm. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "moog",
+      "moo-rk640365",
+      "control-arm",
+      "suspension",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 48,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
+    "price": 79.08,
+    "shippingCost": 8.99,
+    "taxRate": 0.08,
+    "tax": 3.84,
+    "landedCost": 60.83,
+    "shippingDays": 4,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=MOO-RK640365",
+    "competitorPrice": 87,
+    "profitGross": 18.25,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.443Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517447",
+    "partNumber": "MOO-RK620333",
+    "title": "Moog MOO-RK620333 Control Arm for various compatible models",
+    "brand": "Moog",
+    "category": "Suspension",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Moog MOO-RK620333 Control Arm. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "moog",
+      "moo-rk620333",
+      "control-arm",
+      "suspension",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 49,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80",
+    "price": 80.48,
+    "shippingCost": 8.99,
+    "taxRate": 0.08,
+    "tax": 3.92,
+    "landedCost": 61.910000000000004,
+    "shippingDays": 4,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=MOO-RK620333",
+    "competitorPrice": 88,
+    "profitGross": 18.57,
+    "profitMargin": 23.07,
+    "createdAt": "2026-07-19T07:18:37.447Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1503376780353-7e669276c42e?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517450",
+    "partNumber": "DENSO-234-4209",
+    "title": "Denso DENSO-234-4209 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-4209 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-4209",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 36,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 58.33,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.88,
+    "landedCost": 44.870000000000005,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-4209",
+    "competitorPrice": 64.99,
+    "profitGross": 13.459999999999994,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.450Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517452",
+    "partNumber": "DENSO-234-4353",
+    "title": "Denso DENSO-234-4353 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-4353 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-4353",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 34.5,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 56.23,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.7600000000000002,
+    "landedCost": 43.25,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-4353",
+    "competitorPrice": 61.99,
+    "profitGross": 12.979999999999997,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.452Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517453",
+    "partNumber": "DENSO-234-4445",
+    "title": "Denso DENSO-234-4445 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-4445 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-4445",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 35,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 56.93,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.8000000000000003,
+    "landedCost": 43.79,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-4445",
+    "competitorPrice": 62.99,
+    "profitGross": 13.14,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.453Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517454",
+    "partNumber": "DENSO-234-4162",
+    "title": "Denso DENSO-234-4162 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-4162 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-4162",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 34,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 55.52,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.72,
+    "landedCost": 42.71,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-4162",
+    "competitorPrice": 59.99,
+    "profitGross": 12.810000000000002,
+    "profitMargin": 23.07,
+    "createdAt": "2026-07-19T07:18:37.454Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517455",
+    "partNumber": "DENSO-234-9051",
+    "title": "Denso DENSO-234-9051 Oxygen Sensor for various compatible models",
+    "brand": "Denso",
+    "category": "Ignition",
+    "condition": "New",
+    "fits": "various compatible models",
+    "description": "Genuine Denso DENSO-234-9051 Oxygen Sensor. Fits various compatible models. New replacement part with fast local availability.",
+    "tags": [
+      "denso",
+      "denso-234-9051",
+      "oxygen-sensor",
+      "ignition",
+      "various",
+      "compatible",
+      "models"
+    ],
+    "costPrice": 33,
+    "inventory": 5,
+    "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    "price": 54.12,
+    "shippingCost": 5.99,
+    "taxRate": 0.08,
+    "tax": 2.64,
+    "landedCost": 41.63,
+    "shippingDays": 3,
+    "preferredSupplier": "rockauto",
+    "supplierUrl": "https://www.rockauto.com/en/catalog/search?partnumber=DENSO-234-9051",
+    "competitorPrice": 58.99,
+    "profitGross": 12.489999999999995,
+    "profitMargin": 23.08,
+    "createdAt": "2026-07-19T07:18:37.455Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+    ]
+  },
+  {
+    "id": "lst_1784445517456",
     "partNumber": "BOS-15003",
     "title": "Bosch BOS-15003 Brake Pad Set for various compatible models",
     "brand": "Bosch",
@@ -442,7 +806,7 @@
     ],
     "costPrice": 34,
     "inventory": 5,
-    "image": "https://placehold.co/400x300/e2e8f0/1e293b?text=BOS-15003",
+    "image": "https://images.unsplash.com/photo-1489824904134-891ab64532f0?w=600&q=80",
     "price": 56.99,
     "shippingCost": 7.99,
     "taxRate": 0.08,
@@ -454,6 +818,9 @@
     "competitorPrice": 59.99,
     "profitGross": 12.280000000000001,
     "profitMargin": 21.55,
-    "createdAt": "2026-07-19T06:30:09.847Z"
+    "createdAt": "2026-07-19T07:18:37.456Z",
+    "photos": [
+      "https://images.unsplash.com/photo-1489824904134-891ab64532f0?w=600&q=80"
+    ]
   }
 ]

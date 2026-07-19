@@ -6,6 +6,11 @@
   <title>Sell a Part | PartSeekr</title>
   <meta name="description" content="List your auto part on PartSeekr and reach local buyers.">
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin: 0.5rem 0 1rem; }
+    .preview-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #334155; }
+    .upload-hint { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -20,22 +25,26 @@
   <main class="container">
     <section class="hero">
       <h1>Sell a Part</h1>
-      <p>Add your part to the public listings. Buyers can check out instantly.</p>
+      <p>Add your part with photos. Buyers can check out instantly.</p>
     </section>
 
     <section class="form-section">
-      <form id="sellForm">
-        <input type="text" id="sTitle" placeholder="Part title" required>
-        <input type="text" id="sPartNumber" placeholder="Part number" required>
-        <input type="text" id="sBrand" placeholder="Brand" required>
-        <input type="text" id="sCategory" placeholder="Category e.g. Brakes" required>
-        <input type="text" id="sCondition" placeholder="Condition: New, Used, Reman" required>
-        <input type="number" id="sPrice" placeholder="Price ($)" min="0" step="0.01" required>
-        <input type="number" id="sInventory" placeholder="Quantity in stock" min="0" value="1" required>
-        <input type="text" id="sFits" placeholder="Fits: year/make/model" required>
-        <textarea id="sDescription" placeholder="Description" required></textarea>
-        <input type="text" id="sImage" placeholder="Image URL (or leave default)" value="https://placehold.co/400x300/e2e8f0/1e293b?text=PART">
-        <input type="text" id="sTags" placeholder="Tags separated by commas" required>
+      <form id="sellForm" enctype="multipart/form-data">
+        <input type="text" id="sTitle" name="title" placeholder="Part title" required>
+        <input type="text" id="sPartNumber" name="partNumber" placeholder="Part number" required>
+        <input type="text" id="sBrand" name="brand" placeholder="Brand" required>
+        <input type="text" id="sCategory" name="category" placeholder="Category e.g. Brakes" required>
+        <input type="text" id="sCondition" name="condition" placeholder="Condition: New, Used, Reman" required>
+        <input type="number" id="sPrice" name="price" placeholder="Price ($)" min="0" step="0.01" required>
+        <input type="number" id="sInventory" name="inventory" placeholder="Quantity in stock" min="0" value="1" required>
+        <input type="text" id="sFits" name="fits" placeholder="Fits: year/make/model" required>
+        <textarea id="sDescription" name="description" placeholder="Description" required></textarea>
+        <input type="text" id="sTags" name="tags" placeholder="Tags separated by commas" required>
+
+        <label class="upload-hint">Upload up to 5 photos of your part *</label>
+        <input type="file" id="sPhotos" name="photos" accept="image/*" multiple required>
+        <div id="photoPreview" class="preview-grid"></div>
+
         <button type="submit" class="btn btn-primary">List Part</button>
       </form>
     </section>
@@ -48,34 +57,40 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    const photoInput = document.getElementById('sPhotos');
+    const preview = document.getElementById('photoPreview');
+
+    photoInput.addEventListener('change', () => {
+      preview.innerHTML = '';
+      Array.from(photoInput.files).slice(0, 5).forEach(file => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+      });
+    });
+
     document.getElementById('sellForm').addEventListener('submit', async e => {
       e.preventDefault();
-      const payload = {
-        title: document.getElementById('sTitle').value,
-        partNumber: document.getElementById('sPartNumber').value,
-        brand: document.getElementById('sBrand').value,
-        category: document.getElementById('sCategory').value,
-        condition: document.getElementById('sCondition').value,
-        price: parseFloat(document.getElementById('sPrice').value),
-        inventory: parseInt(document.getElementById('sInventory').value, 10),
-        fits: document.getElementById('sFits').value,
-        description: document.getElementById('sDescription').value,
-        image: document.getElementById('sImage').value,
-        tags: document.getElementById('sTags').value.split(',').map(t => t.trim()).filter(Boolean),
-      };
+      const form = e.target;
+      const data = new FormData(form);
 
-      const res = await fetch('/api/listings', {
+      // Replace file list with up to 5 files named photos0..photos4
+      const files = Array.from(photoInput.files).slice(0, 5);
+      data.delete('photos');
+      files.forEach((file, i) => data.append(`photos${i}`, file));
+
+      const res = await fetch('/api/listings/upload', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: data,
       });
 
       if (res.ok) {
-        const data = await res.json();
-        alert('Listed! View it at /part/' + data.id);
-        window.location.href = '/part/' + data.id;
+        const result = await res.json();
+        alert('Listed! View it at /part/' + result.id);
+        window.location.href = '/part/' + result.id;
       } else {
-        alert('Failed to list part. Try again.');
+        const err = await res.text();
+        alert('Failed to list part: ' + err);
       }
     });
   </script>

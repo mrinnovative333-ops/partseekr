@@ -6,6 +6,13 @@
   <title>Demand Board | PartSeekr</title>
   <meta name="description" content="Post what auto part you need. Sellers can respond to your demand on PartSeekr.">
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    .preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 0.5rem; margin: 0.5rem 0 1rem; }
+    .preview-grid img { width: 100%; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #334155; }
+    .upload-hint { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .demand-photos { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+    .demand-photos img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; border: 1px solid #334155; }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -20,7 +27,7 @@
   <main class="container">
     <section class="hero">
       <h1>Demand Board</h1>
-      <p>See what buyers need right now. Post your own request at the bottom.</p>
+      <p>See what buyers need right now. Post your own request with photos at the bottom.</p>
     </section>
 
     <section id="demandBoard" class="tag-board">
@@ -29,16 +36,21 @@
 
     <section class="form-section">
       <h2>Post What You Need</h2>
-      <form id="demandForm">
-        <input type="text" id="dTitle" placeholder="e.g. Need Denso Oxygen Sensor" required>
-        <input type="text" id="dPartNumber" placeholder="Part number (optional)">
-        <input type="text" id="dCategory" placeholder="Category e.g. Exhaust" required>
-        <input type="number" id="dBudget" placeholder="Your budget per unit ($)" min="0" step="0.01" required>
-        <input type="number" id="dQuantity" placeholder="Quantity needed" min="1" value="1" required>
-        <input type="text" id="dLocation" placeholder="Your city/state" required>
-        <input type="email" id="dContact" placeholder="Email or phone" required>
-        <textarea id="dNotes" placeholder="Notes: year/make/model, condition, etc."></textarea>
-        <input type="text" id="dTags" placeholder="Tags separated by commas">
+      <form id="demandForm" enctype="multipart/form-data">
+        <input type="text" id="dTitle" name="title" placeholder="e.g. Need Denso Oxygen Sensor" required>
+        <input type="text" id="dPartNumber" name="partNumber" placeholder="Part number (optional)">
+        <input type="text" id="dCategory" name="category" placeholder="Category e.g. Exhaust" required>
+        <input type="number" id="dBudget" name="budget" placeholder="Your budget per unit ($)" min="0" step="0.01" required>
+        <input type="number" id="dQuantity" name="quantity" placeholder="Quantity needed" min="1" value="1" required>
+        <input type="text" id="dLocation" name="location" placeholder="Your city/state" required>
+        <input type="email" id="dContact" name="contact" placeholder="Email or phone" required>
+        <textarea id="dNotes" name="notes" placeholder="Notes: year/make/model, condition, etc."></textarea>
+        <input type="text" id="dTags" name="tags" placeholder="Tags separated by commas">
+
+        <label class="upload-hint">Upload reference photos (optional, max 5)</label>
+        <input type="file" id="dPhotos" name="photos" accept="image/*" multiple>
+        <div id="photoPreview" class="preview-grid"></div>
+
         <button type="submit" class="btn btn-primary">Post Request</button>
       </form>
     </section>
@@ -50,6 +62,18 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const photoInput = document.getElementById('dPhotos');
+    const preview = document.getElementById('photoPreview');
+
+    photoInput.addEventListener('change', () => {
+      preview.innerHTML = '';
+      Array.from(photoInput.files).slice(0, 5).forEach(file => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        preview.appendChild(img);
+      });
+    });
 
     async function loadDemand() {
       const res = await fetch('/api/demand');
@@ -63,6 +87,7 @@
       }
 
       items.slice().reverse().forEach(d => {
+        const photos = (d.photos || []).map(url => `<img src="${url}" alt="demand photo">`).join('');
         const el = document.createElement('div');
         el.className = 'demand-tag';
         el.innerHTML = `
@@ -72,6 +97,7 @@
           </div>
           <p>${d.notes || ''}</p>
           <p class="tag-meta">${d.location} &bull; ${new Date(d.createdAt).toLocaleDateString()} &bull; ${d.contact}</p>
+          ${photos ? `<div class="demand-photos">${photos}</div>` : ''}
           <div class="tag-tags">${(d.tags || []).map(t => `<span class="tag">${t}</span>`).join(' ')}</div>
         `;
         board.appendChild(el);
@@ -80,30 +106,26 @@
 
     document.getElementById('demandForm').addEventListener('submit', async e => {
       e.preventDefault();
-      const payload = {
-        title: document.getElementById('dTitle').value,
-        partNumber: document.getElementById('dPartNumber').value,
-        category: document.getElementById('dCategory').value,
-        budget: parseFloat(document.getElementById('dBudget').value),
-        quantity: parseInt(document.getElementById('dQuantity').value, 10),
-        location: document.getElementById('dLocation').value,
-        contact: document.getElementById('dContact').value,
-        notes: document.getElementById('dNotes').value,
-        tags: document.getElementById('dTags').value.split(',').map(t => t.trim()).filter(Boolean),
-      };
+      const form = e.target;
+      const data = new FormData(form);
 
-      const res = await fetch('/api/demand', {
+      const files = Array.from(photoInput.files).slice(0, 5);
+      data.delete('photos');
+      files.forEach((file, i) => data.append(`photos${i}`, file));
+
+      const res = await fetch('/api/demand/upload', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: data,
       });
 
       if (res.ok) {
         e.target.reset();
+        preview.innerHTML = '';
         loadDemand();
         alert('Posted! Sellers can now see your request.');
       } else {
-        alert('Failed to post. Try again.');
+        const err = await res.text();
+        alert('Failed to post: ' + err);
       }
     });
 

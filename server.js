@@ -5,10 +5,12 @@ const path = require('path');
 const url = require('url');
 const { createPaymentLink } = require('./src/stripe_links');
 const { sendTelegram, formatOrderAlert } = require('./src/telegram');
+const { parseMultipart } = require('./src/uploads');
 
 const PORT = process.env.PORT || 3000;
 const DATA_DIR = path.join(__dirname, 'data');
 const PUBLIC_DIR = path.join(__dirname, 'public');
+const UPLOAD_DIR = path.join(__dirname, 'uploads');
 
 const LISTINGS_FILE = path.join(DATA_DIR, 'listings.json');
 const DEMAND_FILE = path.join(DATA_DIR, 'demand.json');
@@ -19,6 +21,7 @@ const SITE_URL = process.env.SITE_URL || `http://localhost:${PORT}`;
 
 function initStore() {
   if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+  if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
   if (!fs.existsSync(LISTINGS_FILE)) fs.writeFileSync(LISTINGS_FILE, '[]');
   if (!fs.existsSync(DEMAND_FILE)) fs.writeFileSync(DEMAND_FILE, '[]');
   if (!fs.existsSync(ORDERS_FILE)) fs.writeFileSync(ORDERS_FILE, '[]');
@@ -41,8 +44,11 @@ function serveFile(res, filePath, contentType) {
 }
 
 function renderPartPage(listing) {
+  const mainImage = (listing.photos && listing.photos[0]) || listing.image;
+  const thumbnails = (listing.photos || [listing.image]).slice(0, 8).map((url, i) => `<img src="${url}" alt="${listing.title}" onclick="document.getElementById('mainImage').src='${url}'" loading="lazy">`).join('');
+
   const schema = {
-    '@context': 'https://schema.org', '@type': 'Product', name: listing.title, image: listing.image, description: listing.description,
+    '@context': 'https://schema.org', '@type': 'Product', name: listing.title, image: mainImage, description: listing.description,
     brand: { '@type': 'Brand', name: listing.brand }, mpn: listing.partNumber, category: listing.category,
     offers: { '@type': 'Offer', url: `${SITE_URL}/part/${listing.id}`, priceCurrency: 'USD', price: listing.price.toFixed(2),
       availability: listing.inventory > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
@@ -63,7 +69,10 @@ function renderPartPage(listing) {
   <header class="site-header"><a href="/" class="logo">${SITE_NAME}</a><nav><a href="/">Parts</a><a href="/demand.html">Demand Board</a><a href="/sell.html">Sell a Part</a></nav></header>
   <main class="container part-detail">
     <div class="part-card-detail">
-      <img src="${listing.image}" alt="${listing.title}">
+      <div>
+        <img id="mainImage" class="gallery-main" src="${mainImage}" alt="${listing.title}">
+        <div class="gallery">${thumbnails}</div>
+      </div>
       <div class="part-info">
         <h1>${listing.title}</h1>
         <p class="part-number">Part # ${listing.partNumber}</p>
@@ -139,14 +148,79 @@ const server = http.createServer((req, res) => {
       catch (e) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Invalid JSON' })); }
     }); return;
   }
+  if (pathname === '/api/listings/upload' && req.method === 'POST') {
+    parseMultipart(req, UPLOAD_DIR).then(({ fields, files }) => {
+      const photoUrls = [];
+      for (let i = 0; i < 5; i++) {
+        const f = files[`photos${i}`];
+        if (f) photoUrls.push(`${SITE_URL}/uploads/${f.savedName}`);
+      }
+      const listing = {
+        id: 'lst_' + Date.now(),
+        title: fields.title || '',
+        partNumber: (fields.partNumber || '').toUpperCase(),
+        brand: fields.brand || '',
+        category: fields.category || '',
+        condition: fields.condition || 'New',
+        price: parseFloat(fields.price || '0'),
+        inventory: parseInt(fields.inventory || '1', 10),
+        fits: fields.fits || '',
+        description: fields.description || '',
+        image: photoUrls[0] || `https://placehold.co/400x300/e2e8f0/1e293b?text=${encodeURIComponent((fields.partNumber || 'PART').toUpperCase())}`,
+        photos: photoUrls.length ? photoUrls : undefined,
+        tags: (fields.tags || '').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
+        createdAt: new Date().toISOString(),
+      };
+      const listings = readJson(LISTINGS_FILE); listings.push(listing); writeJson(LISTINGS_FILE, listings);
+      res.writeHead(201, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(listing));
+    }).catch(err => { res.writeHead(400, { 'Content-Type': 'text/plain' }); res.end(err.message); });
+    return;
+  }
   if (pathname === '/api/listings' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(LISTINGS_FILE))); return; }
   if (pathname === '/api/orders' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(ORDERS_FILE))); return; }
   if (pathname === '/api/demand' && req.method === 'GET') { res.writeHead(200, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(readJson(DEMAND_FILE))); return; }
+  if (pathname === '/api/demand/upload' && req.method === 'POST') {
+    parseMultipart(req, UPLOAD_DIR).then(({ fields, files }) => {
+      const photoUrls = [];
+      for (let i = 0; i < 5; i++) {
+        const f = files[`photos${i}`];
+        if (f) photoUrls.push(`${SITE_URL}/uploads/${f.savedName}`);
+      }
+      const entry = {
+        id: 'dem_' + Date.now(),
+        title: fields.title || '',
+        partNumber: (fields.partNumber || '').toUpperCase(),
+        category: fields.category || '',
+        budget: parseFloat(fields.budget || '0'),
+        quantity: parseInt(fields.quantity || '1', 10),
+        location: fields.location || '',
+        contact: fields.contact || '',
+        notes: fields.notes || '',
+        photos: photoUrls.length ? photoUrls : undefined,
+        tags: (fields.tags || '').split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
+        createdAt: new Date().toISOString(),
+      };
+      const demand = readJson(DEMAND_FILE); demand.push(entry); writeJson(DEMAND_FILE, demand);
+      res.writeHead(201, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(entry));
+    }).catch(err => { res.writeHead(400, { 'Content-Type': 'text/plain' }); res.end(err.message); });
+    return;
+  }
   if (pathname === '/api/demand' && req.method === 'POST') {
     let body = ''; req.on('data', chunk => body += chunk); req.on('end', () => {
       try { const data = JSON.parse(body); const demand = readJson(DEMAND_FILE); const entry = { id: 'dem_' + Date.now(), ...data, createdAt: new Date().toISOString() }; demand.push(entry); writeJson(DEMAND_FILE, demand); res.writeHead(201, { 'Content-Type': 'application/json' }); res.end(JSON.stringify(entry)); }
       catch (e) { res.writeHead(400, { 'Content-Type': 'application/json' }); res.end(JSON.stringify({ error: 'Invalid JSON' })); }
     }); return;
+  }
+  if (pathname.startsWith('/uploads/')) {
+    const file = pathname.replace('/uploads/', '').replace(/[^a-zA-Z0-9._-]/g, '');
+    const filePath = path.join(UPLOAD_DIR, file);
+    if (fs.existsSync(filePath)) {
+      const ext = path.extname(filePath).toLowerCase();
+      const type = { '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.webp': 'image/webp' }[ext] || 'application/octet-stream';
+      res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'public, max-age=86400' });
+      fs.createReadStream(filePath).pipe(res);
+    } else { res.writeHead(404); res.end('Not found'); }
+    return;
   }
   if (pathname === '/robots.txt') { res.writeHead(200, { 'Content-Type': 'text/plain' }); res.end(`User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`); return; }
   if (pathname === '/sitemap.xml') {
