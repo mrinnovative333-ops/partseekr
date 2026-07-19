@@ -4,7 +4,11 @@ const querystring = require('querystring');
 const STRIPE_API_HOST = 'api.stripe.com';
 
 function stripeRequest({ method, path, body }) {
-  const apiKey = (process.env.STRIPE_RESTRICTED_KEY || process.env.STRIPE_SECRET_KEY || '').toString().trim();
+  let apiKey = (process.env.STRIPE_RESTRICTED_KEY || process.env.STRIPE_SECRET_KEY || '').toString();
+  // Handle common paste mistakes like "STRIPE_RESTRICTED_KEY=rk_live_..."
+  apiKey = apiKey.replace(/^STRIPE_(RESTRICTED|SECRET)_KEY\s*=\s*/, '').trim();
+  // Remove any accidental whitespace or non-printable chars
+  apiKey = apiKey.replace(/\s/g, '');
   if (!apiKey) {
     return Promise.reject(new Error('No Stripe API key set'));
   }
